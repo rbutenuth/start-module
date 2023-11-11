@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:starter="http://www.mulesoft.org/schema/mule/starter"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/starter http://www.mulesoft.org/schema/mule/starter/current/mule-starter.xsd">
+
+	<object name="firstIsSuccess" class="de.codecentric.starter.CallRecorder">
+		<property key="failures" value="0"/>
+	</object>
+	
+	<object name="firstIsFailure" class="de.codecentric.starter.CallRecorder">
+		<property key="failures" value="1"/>
+	</object>
+
+	<object name="manyFailures" class="de.codecentric.starter.CallRecorder">
+		<property key="failures" value="100"/>
+	</object>
+
+	<flow name="starter-first-is-success">
+		<starter:run-once initialDelayTime="1"  delayBetweenTries="1" numberOfTries="3"/>
+		<logger level="INFO" message='flow is running' category="starter-tests"/>
+		<set-payload value="#[app.registry.firstIsSuccess.recordCall]" />
+		<logger level="INFO" message='#["payload: " ++ payload]' category="starter-tests"/>
+	</flow>
+
+	<flow name="starter-first-is-failure">
+		<starter:run-once initialDelayTime="1000" initialDelayTimeUnit="MILLISECONDS" 
+			delayBetweenTries="1000" delayBetweenTriesUnit="MILLISECONDS"
+			numberOfTries="3"/>
+		<logger level="INFO" message='flow is running' category="starter-tests"/>
+		<set-payload value="#[app.registry.firstIsFailure.recordCall]" />
+		<logger level="INFO" message='#["payload: " ++ payload]' category="starter-tests"/>
+	</flow>
+
+	<flow name="starter-many-failures">
+		<starter:run-once initialDelayTime="1000" initialDelayTimeUnit="MILLISECONDS" 
+			delayBetweenTries="1000" delayBetweenTriesUnit="MILLISECONDS"
+			numberOfTries="3"/>
+		<logger level="INFO" message='flow is running' category="starter-tests"/>
+		<set-payload value="#[app.registry.manyFailures.recordCall]" />
+		<logger level="INFO" message='#["payload: " ++ payload]' category="starter-tests"/>
+	</flow>
+</mule>
