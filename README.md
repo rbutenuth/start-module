@@ -4,6 +4,8 @@ This module runs a flow once after startup of your Mule application. In case of 
 it will try it again after a configurable amount of time. The number of tries in total is limited
 to a configurable value.
 
+The payload in the started flow is the number of the try (starting with 1).
+
 Here a complete example, place it as message source at the beginning of the flow:
 
 ```
