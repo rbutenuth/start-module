@@ -34,6 +34,7 @@ Add this dependency to your application pom.xml
 
 ## Release notes
 
+* 1.2.0 2024-07-19: Updated Mule Java SDK to 1.6.3, now ready for Mule running on Java 17. 
 * 1.0.0 2023-11-11: Initial release. 
 
 ## Hint for developers
