@@ -27,7 +27,7 @@ Add this dependency to your application pom.xml
 <dependency>
 	<groupId>de.codecentric.mule.modules</groupId>
 	<artifactId>start-module</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.2.0</version>
 	<classifier>mule-plugin</classifier>
 </dependency>
 ```
